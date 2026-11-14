@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智教实训装备 · 教育实训产品选购平台</title>
+<meta name="description" content="面向教育实训的智能网联、智能车、新能源汽车与具身智能产品选购平台，支持采购选型与销售展示双模式。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="mode-procure">
+
+<header class="site-header" id="siteHeader">
+  <div class="container nav-inner">
+    <a class="brand" href="#/home" aria-label="智教实训装备首页">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7.5 12 4l8 3.5-8 3.5-8-3.5Z"/>
+          <path d="M4 12l8 3.5 8-3.5"/>
+          <path d="M4 16.5 12 20l8-3.5"/>
+        </svg>
+      </span>
+      <span class="brand-text">智教<span>实训装备</span></span>
+    </a>
+
+    <form class="nav-search" id="navSearchForm" role="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+      </svg>
+      <input type="search" id="navSearchInput" placeholder="搜索产品、型号、课程或岗位" aria-label="搜索产品">
+    </form>
+
+    <div class="mode-switch" role="group" aria-label="展示模式切换">
+      <button type="button" data-mode="procure" class="active" aria-pressed="true">采购选型</button>
+      <button type="button" data-mode="sales" aria-pressed="false">销售展示</button>
+    </div>
+
+    <div class="nav-actions">
+      <a class="nav-icon-btn" href="#/compare" aria-label="产品对比">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="7" height="14" rx="1.5"/><rect x="14" y="5" width="7" height="14" rx="1.5"/>
+        </svg>
+        <span class="nav-label">对比</span>
+        <span class="badge" id="compareBadge" hidden>0</span>
+      </a>
+      <a class="nav-icon-btn" href="#/cart" aria-label="选购清单">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 4h2l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21 8H6"/>
+          <circle cx="10" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/>
+        </svg>
+        <span class="nav-label">清单</span>
+        <span class="badge" id="cartBadge" hidden>0</span>
+      </a>
+      <button type="button" class="hamburger" id="menuToggle" aria-label="打开菜单" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <form class="mobile-search" id="mobileSearchForm" role="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+      </svg>
+      <input type="search" id="mobileSearchInput" placeholder="搜索产品、型号、课程或岗位" aria-label="搜索产品">
+    </form>
+    <a href="#/home">首页</a>
+    <a href="#/list">全部产品</a>
+    <a href="#/compare">产品对比</a>
+    <a href="#/cart">选购清单</a>
+  </div>
+</header>
+
+<main id="app">
+  <section class="page" id="page-home" aria-label="首页">
+    <div id="homeContent"></div>
+  </section>
+
+  <section class="page" id="page-list" aria-label="产品列表">
+    <div class="container page-inner">
+      <nav class="breadcrumb" id="listCrumb" aria-label="面包屑"></nav>
+      <div class="page-head">
+        <h1 class="page-title" id="listTitle">全部产品</h1>
+        <p class="page-sub" id="listSub">按分类、课程、竞赛与岗位组合筛选，快速锁定实训装备。</p>
+      </div>
+      <div class="list-layout" id="listLayout">
+        <aside class="filters" id="filterPanel" aria-label="筛选面板">
+          <div class="filters-head">
+            <h2>筛选条件</h2>
+            <button type="button" class="filters-close" id="filtersClose">收起</button>
+          </div>
+          <div id="filterContent"></div>
+        </aside>
+        <div class="list-main">
+          <div class="list-toolbar">
+            <div class="toolbar-row">
+              <p class="result-count" id="resultCount"></p>
+              <div class="list-tools">
+                <div class="search-field list-search">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+                  </svg>
+                  <input type="search" id="listSearch" placeholder="在当前结果中搜索" aria-label="搜索产品">
+                </div>
+                <select id="sortSelect" aria-label="排序方式">
+                  <option value="category">按分类排序</option>
+                  <option value="name">按名称排序</option>
+                </select>
+                <button type="button" class="btn btn-ghost filter-toggle" id="filterToggle">筛选</button>
+              </div>
+            </div>
+          </div>
+          <div class="product-grid" id="productGrid"></div>
+          <div id="listEmpty" hidden></div>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-filter-bar">
+      <button type="button" class="btn btn-primary" id="mobileFilterBtn">筛选条件</button>
+    </div>
+  </section>
+
+  <section class="page" id="page-detail" aria-label="产品详情">
+    <div class="container page-inner" id="detailContent"></div>
+  </section>
+
+  <section class="page" id="page-compare" aria-label="产品对比">
+    <div class="container page-inner">
+      <nav class="breadcrumb" aria-label="面包屑">
+        <a href="#/home">首页</a><span>/</span><span>产品对比</span>
+      </nav>
+      <div class="page-head">
+        <h1 class="page-title">产品对比</h1>
+        <p class="page-sub">最多同时对比 4 款产品，参数项取并集展示，差异行自动高亮。</p>
+      </div>
+      <div id="compareContent"></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-cart" aria-label="选购清单">
+    <div class="container page-inner">
+      <nav class="breadcrumb" aria-label="面包屑">
+        <a href="#/home">首页</a><span>/</span><span>选购清单</span>
+      </nav>
+      <div class="page-head">
+        <h1 class="page-title">选购清单</h1>
+        <p class="page-sub">整理选型方案，生成只读分享链接发给同事或客户。</p>
+      </div>
+      <div id="cartContent"></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-share" aria-label="分享方案">
+    <div class="container page-inner">
+      <div id="shareContent"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="#/home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 7.5 12 4l8 3.5-8 3.5-8-3.5Z"/>
+              <path d="M4 12l8 3.5 8-3.5"/>
+              <path d="M4 16.5 12 20l8-3.5"/>
+            </svg>
+          </span>
+          <span class="brand-text">智教<span>实训装备</span></span>
+        </a>
+        <p>覆盖智能网联、智能车、新能源汽车与具身智能的实训产品选型平台，帮助院校按课程、竞赛与岗位快速完成设备配置。</p>
+      </div>
+      <div class="footer-col">
+        <h4>产品分类</h4>
+        <div class="footer-links" id="footerCats"></div>
+      </div>
+      <div class="footer-col">
+        <h4>快速入口</h4>
+        <div class="footer-links">
+          <a href="#/list">全部产品</a>
+          <a href="#/list?tags=%E5%8D%95%E7%89%87%E6%9C%BA%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF">按课程选型</a>
+          <a href="#/list?tags=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B">按竞赛选型</a>
+          <a href="#/compare">产品对比</a>
+          <a href="#/cart">选购清单</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 智教实训装备 · 教育实训产品选购平台</span>
+      <span>本站仅用于教学实训产品展示与选型，不提供在线交易。</span>
+    </div>
+  </div>
+</footer>
+
+<div class="compare-bar" id="compareBar" hidden>
+  <div class="compare-bar-main">
+    <span class="compare-bar-info">已选 <b id="compareCount">0</b> 个产品</span>
+    <div class="compare-bar-thumbs" id="compareThumbs"></div>
+  </div>
+  <div class="compare-bar-actions">
+    <button type="button" class="btn btn-ghost btn-sm" id="compareBarClear">清空</button>
+    <a class="btn btn-primary btn-sm" href="#/compare">去对比</a>
+  </div>
+</div>
+
+<div class="modal-mask" id="modalMask" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head">
+      <h3 id="modalTitle">提示</h3>
+      <button type="button" class="icon-btn" id="modalClose" aria-label="关闭">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
