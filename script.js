@@ -1,5 +1,5 @@
 /* ==========================================================================
-   智教实训装备 · 教育实训产品选购平台
+   零零七采购网 · 教育实训产品选购平台
    原生 JavaScript（ES6）单页应用
    ========================================================================== */
 
@@ -1153,26 +1153,26 @@ function renderRoute(scroll = true) {
   if (basePath === '/home') {
     renderHome();
     showPage('page-home');
-    document.title = '智教实训装备 · 教育实训产品选购平台';
+    document.title = '零零七采购网 · 教育实训产品选购平台';
   } else if (basePath === '/list') {
     renderList(params);
     showPage('page-list');
-    document.title = '产品中心 · 智教实训装备';
+    document.title = '产品中心 · 零零七采购网';
   } else if (basePath === '/detail') {
     renderDetail(detailId);
     showPage('page-detail');
   } else if (basePath === '/compare') {
     renderCompare();
     showPage('page-compare');
-    document.title = '产品对比 · 智教实训装备';
+    document.title = '产品对比 · 零零七采购网';
   } else if (basePath === '/cart') {
     renderCart();
     showPage('page-cart');
-    document.title = '选购清单 · 智教实训装备';
+    document.title = '选购清单 · 零零七采购网';
   } else if (basePath === '/share') {
     renderShare(params);
     showPage('page-share');
-    document.title = '分享方案 · 智教实训装备';
+    document.title = '分享方案 · 零零七采购网';
   } else {
     location.hash = '#/home';
     return;
@@ -1694,7 +1694,7 @@ function renderDetail(id) {
       ${advantagesHTML}
     </section>` : ''}`;
 
-  document.title = `${product.name} ${product.model} · 智教实训装备`;
+  document.title = `${product.name} ${product.model} · 零零七采购网`;
   syncCompareInputs();
   updateBadges();
 }
